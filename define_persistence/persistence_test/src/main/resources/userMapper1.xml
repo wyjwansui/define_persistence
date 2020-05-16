@@ -1,0 +1,29 @@
+<mapper namespace="com.lagou.dao.UserMapper">
+
+    <!-- namespace + "." + id ==> statementId -->
+    <select id="findAll" resultType="com.lagou.entity.User">
+        select * from user
+    </select>
+
+    <select id="findOne" resultType="com.lagou.entity.User" paramType="com.lagou.entity.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+
+    <!-- 暂时支持包装类 -->
+    <select id="findMaxId" resultType="java.lang.Integer">
+        SELECT MAX(id) from `user`
+    </select>
+
+
+    <insert id="add" resultType="int" paramType="com.lagou.entity.User">
+        insert into user values(#{id},#{username},#{password},#{birthday})
+    </insert>
+
+    <update id="updateById" resultType="int" paramType="com.lagou.entity.User">
+        update user set username = #{username}, password = #{password}, birthday = #{birthday} where id = #{id}
+    </update>
+
+    <delete id="deleteById" resultType="int" paramType="com.lagou.entity.User">
+        delete from user where id = #{id}
+    </delete>
+</mapper>

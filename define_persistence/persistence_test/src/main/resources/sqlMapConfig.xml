@@ -1,0 +1,16 @@
+<configuration>
+
+    <!-- 数据库配置信息 -->
+    <dataSource>
+        <property name="driverClass" value="com.mysql.jdbc.driver"/>
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1/lagou"/>
+        <property name="username" value="root"/>
+        <property name="password" value="toor"/>
+    </dataSource>
+
+
+    <!-- 引入mapper -->
+    <mapper resource="userMapper.xml"/>
+    <mapper resource="userMapper1.xml"/>
+
+</configuration>

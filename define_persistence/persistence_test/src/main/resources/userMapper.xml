@@ -1,0 +1,12 @@
+<mapper namespace="user">
+
+    <!-- namespace + "." + id ==> statementId -->
+    <select id="selectList" resultType="com.lagou.entity.User">
+        select * from user
+    </select>
+
+    <select id="selectOne" resultType="com.lagou.entity.User" paramType="com.lagou.entity.User">
+        select * from user where id = #{id} and username = #{username}
+    </select>
+
+</mapper>

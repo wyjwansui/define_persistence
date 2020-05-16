@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.lagou</groupId>
+    <artifactId>define_persistence</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>persistence_test</module>
+        <module>persistence</module>
+    </modules>
+    <packaging>pom</packaging>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <maven.compiler.encoding>UTF-8</maven.compiler.encoding>
+        <skipTests>true</skipTests>
+
+        <nexus.content.public.url>
+            http://maven.aliyun.com/nexus/content/groups/public/
+        </nexus.content.public.url>
+        <nexus.deploy.snapshot.url>
+            http://maven.aliyun.com/nexus/content/groups/snapshots/
+        </nexus.deploy.snapshot.url>
+        <nexus.deploy.release.url>
+            http://maven.aliyun.com/nexus/content/groups/releases/
+        </nexus.deploy.release.url>
+    </properties>
+
+    <!-- distributionManagement 负责管理构件的发布 https://blog.csdn.net/yeguxin/article/details/77110622-->
+    <distributionManagement>
+        <!-- id 必须与 settings.xml里server的id保持一致 -->
+        <repository>
+            <id>deployRelease</id>
+            <name>NexusReleases</name>
+            <url>${nexus.deploy.release.url}</url>
+        </repository>
+        <snapshotRepository>
+            <id>deploySnapshot</id>
+            <name>NexusSnapshots</name>
+            <url>${nexus.deploy.snapshot.url}</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <!-- repositories标签的作用是用来配置maven项目的远程仓库 -->
+    <repositories>
+        <!-- Nexus私服 -->
+        <repository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>${nexus.content.public.url}</url>
+        </repository>
+        <repository>
+            <id>maven-aliyun</id>
+            <name>maven-aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </repository>
+    </repositories>
+
+    <!-- 设定插件仓库 如有Nexus私服, 取消注释并指向正确的服务器地�? -->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>nexus</id>
+            <name>Team Nexus Repository</name>
+            <url>${nexus.content.public.url}</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>maven-aliyun</id>
+            <name>maven-aliyun</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>central</id>
+            <name>Maven Official Repository</name>
+            <url>http://repo1.maven.org/maven2</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
